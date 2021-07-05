@@ -3,6 +3,9 @@ const secondImageElement = document.getElementById('2');
 const lastImageElement = document.getElementById('3');
 const maxAttempts = 25;
 let counter = 0;
+let arrOfNames = [];
+let arrOfVotes = [];
+
 
 function generateRandomIndex() {
   return Math.floor(Math.random() * product.globArr.length);
@@ -14,6 +17,7 @@ function product(name, source) {
   this.votes = 0;
   this.show = 0;
   product.globArr.push(this);
+  arrOfNames.push(this.name);
 }
 /*product.globArr = [];
 new product('bag', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/bag.jpg');
@@ -36,39 +40,47 @@ new product('unicorn', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main
 new product('water-can', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/water-can.jpg');
 new product('wine-glass', 'https://github.com/LTUC/amman-201d32/blob/main/class-11/lab/assets/wine-glass.jpg?raw=true');*/
 product.globArr = [];
-new product('bag', 'BusMall/image/bag.jpg');
-new product('banana', 'BusMall/image/banana.jpg');
-new product('bathroom', 'BusMall/image/bathroom.jpg');
-new product('boots', 'BusMall/image/boots.jpg');
-new product('breakfast', 'BusMall/image/breakfast.jpg');
-new product('bubblegum', 'BusMall/image/bubblegum.jpg');
-new product('chair', 'BusMall/image/chair.jpg');
-new product('cthulhu', 'BusMall/image/cthulhu.jpg');
-new product('dog-duck', 'BusMall/image/dog-duck.jpg');
-new product('dragon', 'BusMall/image/dragon.jpg');
-new product('pen', 'BusMall/image/pen.jpg');
-new product('pet-sweep', 'BusMall/image/pet-sweep.jpg');
-new product('scissors', 'BusMall/image/scissors.jpg');
-new product('shark', 'BusMall/image/shark.jpg');
-new product('sweep', 'BusMall/image/sweep.png');
-new product('tauntaun', 'BusMall/image/tauntaun.jpg');
-new product('unicorn', 'BusMall/image/unicorn.jpg');
-new product('water-can', 'BusMall/image/water-can.jpg');
-new product('wine-glass', 'BusMall/image/wine-glass.jpg');
+new product('bag', 'image/bag.jpg');
+new product('banana', 'image/banana.jpg');
+new product('bathroom', 'image/bathroom.jpg');
+new product('boots', 'image/boots.jpg');
+new product('breakfast', 'image/breakfast.jpg');
+new product('bubblegum', 'image/bubblegum.jpg');
+new product('chair', 'image/chair.jpg');
+new product('cthulhu', 'image/cthulhu.jpg');
+new product('dog-duck', 'image/dog-duck.jpg');
+new product('dragon', 'image/dragon.jpg');
+new product('pen', 'image/pen.jpg');
+new product('pet-sweep', 'image/pet-sweep.jpg');
+new product('scissors', 'image/scissors.jpg');
+new product('shark', 'image/shark.jpg');
+new product('sweep', 'image/sweep.png');
+new product('tauntaun', 'image/tauntaun.jpg');
+new product('unicorn', 'image/unicorn.jpg');
+new product('water-can', 'image/water-can.jpg');
+new product('wine-glass', 'image/wine-glass.jpg');
 
 
-let firstIndex;
-let secondIndex;
-let lastindex;
-
+let firstIndex = 0;
+let secondIndex = 0;
+let lastIndex = 0;
+let arrn = [];
 function renderthreeImages() {
   firstIndex = generateRandomIndex();
   secondIndex = generateRandomIndex();
   lastIndex = generateRandomIndex();
-  while (firstIndex === secondIndex || firstIndex === lastIndex || lastIndex === secondIndex) {
+
+  while (firstIndex === secondIndex || firstIndex === lastIndex || lastIndex === secondIndex || arrn.includes(firstIndex) || arrn.includes(secondIndex) || arrn.includes(lastIndex)) {
+    firstIndex = generateRandomIndex();
     secondIndex = generateRandomIndex();
     lastIndex = generateRandomIndex();
   }
+  arrn[0] = firstIndex;
+  arrn[1] = secondIndex;
+  arrn[2] = lastIndex;
+
+
+  console.log(firstIndex, secondIndex, lastIndex);
   firstImageElement.src = product.globArr[firstIndex].source;
   secondImageElement.src = product.globArr[secondIndex].source;
   lastImageElement.src = product.globArr[lastIndex].source;
@@ -76,7 +88,8 @@ function renderthreeImages() {
 renderthreeImages();
 firstImageElement.addEventListener('click', handleClick);
 secondImageElement.addEventListener('click', handleClick);
-firstImageElement, addEventListener('click', handleClick);
+lastImageElement.addEventListener('click', handleClick);
+
 function handleClick(event) {
   counter++;
 
@@ -102,12 +115,17 @@ function handleClick(event) {
     renderthreeImages();
   } else {
     renderList();
+    gettingChart();
+
   }
 }
+let arrOfshown = []; 
 function renderList() {
   const ul = document.getElementById('unList');
 
   for (let i = 0; i < product.globArr.length; i++) {
+    arrOfVotes.push(product.globArr[i].votes);
+    arrOfshown.push(product.globArr[i].shown);
     let li = document.createElement('li');
     ul.appendChild(li);
     li.textContent = `${product.globArr[i].name} has this number of votes ${product.globArr[i].votes}, and has this number of show ${product.globArr[i].show}`;
@@ -130,3 +148,30 @@ function renderList() {
   lastImageElement.removeEventListener('click', handleClick);
 }*/
 
+function gettingChart(){
+  let ctx = document.getElementById('myChart')
+  let myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: arrOfNames,
+          datasets: [{
+              label: '# of Votes',
+              data: arrOfVotes,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+              ],
+              borderWidth: 1
+          },{
+            label: '# of Shown',
+            data: arrOfshown,
+            backgroundColor: [
+              'rgb(54, 162, 235)'
+            ]
+          }]
+      },
+  })
+  }
+  
