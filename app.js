@@ -15,7 +15,7 @@ function product(name, source) {
   this.show = 0;
   product.globArr.push(this);
 }
-product.globArr = [];
+/*product.globArr = [];
 new product('bag', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/bag.jpg');
 new product('banana', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/banana.jpg');
 new product('bathroom', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/bathroom.jpg');
@@ -34,7 +34,27 @@ new product('sweep', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/c
 new product('tauntaun', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/tauntaun.jpg');
 new product('unicorn', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/unicorn.jpg');
 new product('water-can', 'https://raw.githubusercontent.com/LTUC/amman-201d32/main/class-11/lab/assets/water-can.jpg');
-new product('wine-glass', 'https://github.com/LTUC/amman-201d32/blob/main/class-11/lab/assets/wine-glass.jpg?raw=true');
+new product('wine-glass', 'https://github.com/LTUC/amman-201d32/blob/main/class-11/lab/assets/wine-glass.jpg?raw=true');*/
+product.globArr = [];
+new product('bag', 'BusMall/image/bag.jpg');
+new product('banana', 'BusMall/image/banana.jpg');
+new product('bathroom', 'BusMall/image/bathroom.jpg');
+new product('boots', 'BusMall/image/boots.jpg');
+new product('breakfast', 'BusMall/image/breakfast.jpg');
+new product('bubblegum', 'BusMall/image/bubblegum.jpg');
+new product('chair', 'BusMall/image/chair.jpg');
+new product('cthulhu', 'BusMall/image/cthulhu.jpg');
+new product('dog-duck', 'BusMall/image/dog-duck.jpg');
+new product('dragon', 'BusMall/image/dragon.jpg');
+new product('pen', 'BusMall/image/pen.jpg');
+new product('pet-sweep', 'BusMall/image/pet-sweep.jpg');
+new product('scissors', 'BusMall/image/scissors.jpg');
+new product('shark', 'BusMall/image/shark.jpg');
+new product('sweep', 'BusMall/image/sweep.png');
+new product('tauntaun', 'BusMall/image/tauntaun.jpg');
+new product('unicorn', 'BusMall/image/unicorn.jpg');
+new product('water-can', 'BusMall/image/water-can.jpg');
+new product('wine-glass', 'BusMall/image/wine-glass.jpg');
 
 
 let firstIndex;
