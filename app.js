@@ -90,6 +90,11 @@ firstImageElement.addEventListener('click', handleClick);
 secondImageElement.addEventListener('click', handleClick);
 lastImageElement.addEventListener('click', handleClick);
 
+const section = document.getElementById('one');
+section.addEventListener('click',handleClick);
+let btnEl ;
+
+
 function handleClick(event) {
   counter++;
 
@@ -114,10 +119,16 @@ function handleClick(event) {
 
     renderthreeImages();
   } else {
-    renderList();
-    gettingChart();
-
+    btnEl = document.getElementById('btn');
+    btnEl.addEventListener('click', handleShow);
+    section.removeEventListener('click',handleClick)
   }
+}
+
+function handleShow(){
+  renderList();
+  gettingChart();
+  btnEl.removeEventListener('click',handleShow);
 }
 let arrOfshown = []; 
 function renderList() {
@@ -125,16 +136,16 @@ function renderList() {
 
   for (let i = 0; i < product.globArr.length; i++) {
     arrOfVotes.push(product.globArr[i].votes);
-    arrOfshown.push(product.globArr[i].shown);
+    arrOfshown.push(product.globArr[i].show);
     let li = document.createElement('li');
     ul.appendChild(li);
     li.textContent = `${product.globArr[i].name} has this number of votes ${product.globArr[i].votes}, and has this number of show ${product.globArr[i].show}`;
   }
 
 
-  firstImageElement.removeEventListener('click', handleClick);
+  /*firstImageElement.removeEventListener('click', handleClick);
   secondImageElement.removeEventListener('click', handleClick);
-  lastImageElement.removeEventListener('click', handleClick);
+  lastImageElement.removeEventListener('click', handleClick);*/
 }
 /*function renderlist() {
   const ul = document.getElementById('unList1');
