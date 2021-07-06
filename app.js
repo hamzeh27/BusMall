@@ -129,6 +129,8 @@ function handleShow(){
   renderList();
   gettingChart();
   btnEl.removeEventListener('click',handleShow);
+  save();
+
 }
 let arrOfshown = []; 
 function renderList() {
@@ -185,4 +187,19 @@ function gettingChart(){
       },
   })
   }
-  
+  function save(){
+ const newarr =JSON.stringify(product.globArr);
+ localStorage.setItem('put',newarr);
+  }
+  function getVotes()
+  {
+    const data= localStorage.getItem('put');
+    console.log(data);
+    const parsedput = JSON.parse(data);
+    console.log(parsedput);
+    if (parsedput != null) {
+      product.globArr = parsedput;
+  };
+
+  }
+  getVotes();
